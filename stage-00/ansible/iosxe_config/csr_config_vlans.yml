@@ -1,0 +1,86 @@
+#Copyright (c) 2020 Cisco and/or its affiliates.
+#
+#This software is licensed to you under the terms of the Cisco Sample
+#Code License, Version 1.1 (the "License"). You may obtain a copy of the
+#License at
+#
+#               https://developer.cisco.com/docs/licenses
+#
+#All use of the material herein must be in accordance with the terms of
+#the License. All rights not expressly granted by the License are
+#reserved. Unless required by applicable law or agreed to separately in
+#writing, software distributed under the License is distributed on an "AS
+#IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+#or implied.
+---
+- name: configure VLANs
+  hosts: csr_routers
+  gather_facts: false
+  connection: network_cli
+
+  collections:
+      - cisco.ios.ios
+
+  tasks:
+  - name: Ensure Demo VLANs are configured
+    cisco.ios.ios_vlans:
+        config:
+        - name: Demo_Vlan_0
+          vlan_id: 1600
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_1
+          vlan_id: 1601
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_2
+          vlan_id: 1602
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_3
+          vlan_id: 1603
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_4
+          vlan_id: 1604
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_5
+          vlan_id: 1605
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_6
+          vlan_id: 1606
+          state: active
+          shutdown: disabled
+
+        - name: Demo_Vlan_7
+          vlan_id: 1607
+          state: active
+          shutdown: disabled
+        state: merged
+
+  - name: Ensure Testing VLANs are configured
+    cisco.ios.ios_vlans:
+        config:
+        - name: Test_Vlan_1
+          vlan_id: 1602
+          state: active
+          shutdown: disabled
+
+        - name: Test_Vlan_2
+          vlan_id: 1603
+          state: active
+          shutdown: enabled
+
+        - name: Test_Vlan_2
+          vlan_id: 1603
+          state: active
+          shutdown: enabled
+        state: merged
